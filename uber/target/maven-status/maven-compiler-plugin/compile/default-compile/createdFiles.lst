@@ -1,0 +1,7 @@
+model\Version.class
+model\Structure.class
+model\Test.class
+model\AdditionalData.class
+model\Parent.class
+model\AssayAggregatedDataView.class
+model\ParentIupacName.class

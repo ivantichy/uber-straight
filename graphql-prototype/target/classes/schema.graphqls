@@ -1,0 +1,124 @@
+type Query {
+    allParents: [Parent]
+}
+
+type AdditionalData {
+   adId: String!
+   adDictionaryUrl: String
+   adDictionaryValues: String
+   adInputType: String
+   adName: String
+   adValidators: String
+   adValue: String
+   isDeleted: String
+   preparationId: String
+   versionId: String
+   parent: Parent
+ 
+}
+
+type Parent {
+    parentId: ID!
+    structureId: String!
+    biological: String
+    parentId: String
+    createdBy: String
+    cstOriginal: String
+    dirtyStatus: String
+    geometricIsomerism: String
+    chemistId: String
+    initDate: String
+    isDeleted: String
+    modDate: String
+    modifiedBy: String
+    mwt: String
+    pcn: String
+    restricted: String
+    stereochemistry: String
+    structureId: String
+    structureType: String
+    unknownId: String
+    additionalData: [AdditionalData]
+    assayAggregatedDataViews: [AssayAggregatedDataView]
+	parentIupacName: ParentIupacName
+    structure: Structure
+    versions: [Version]
+  
+}
+
+
+type AssayAggregatedDataView {
+	ana: String
+    exp: String
+    expAna: String
+    id: String
+    nonNumericValue: String
+    notanumber: String
+    numericValue: String
+	paramType: String
+	relativeStd: String
+	sampleSize: String
+	parent: Parent
+}
+
+type ParentIupacName {
+	adValue: String
+	parent: Parent
+}
+
+type Structure {
+	cdFlags: String
+	cdFormula: String
+	cdFp1: String
+	cdFp10: String
+	cdFp11: String
+	cdFp12: String
+	cdFp13: String
+	cdFp14: String
+	cdFp15: String
+	cdFp16: String
+	cdFp2: String
+	cdFp3: String
+	cdFp4: String
+	cdFp5: String
+	cdFp6: String
+	cdFp7: String
+	cdFp8: String
+	cdFp9: String
+	cdHash: String
+	cdMolweight: String
+	cdPreCalculated: String
+	cdScreenDescriptor: String
+	cdSmiles: String
+	cdSortableFormula: String
+	cdStructure: String
+	cdTautFragHash: String
+	cdTautHash: String
+	cdTimestamp: String
+	mf: String
+	mwt: String
+	unknown: String
+	cdId: String
+	parent: Parent
+}
+
+type Version {
+	calculatedMwt: String
+	cn: String
+	createdBy: String
+	fusedImage: String
+	chemistId: String
+	initDate: String
+	isDeleted: String
+	modDate: String
+	modifiedBy: String
+	mwt: String
+	saltFingerprint: String
+	structureId: String
+	versionId: String
+}
+
+schema {
+  query: Query
+}
+
