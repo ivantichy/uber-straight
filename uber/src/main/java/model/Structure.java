@@ -10,7 +10,6 @@ import java.util.Date;
  * 
  */
 @Entity
-@NamedQuery(name = "Structure.findAll", query = "SELECT s FROM Structure s")
 public class Structure implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -21,55 +20,55 @@ public class Structure implements Serializable {
 	private String cdFormula;
 
 	@Column(name = "cd_fp1")
-	private Integer cdFp1;
+	private int cdFp1;
 
 	@Column(name = "cd_fp10")
-	private Integer cdFp10;
+	private int cdFp10;
 
 	@Column(name = "cd_fp11")
-	private Integer cdFp11;
+	private int cdFp11;
 
 	@Column(name = "cd_fp12")
-	private Integer cdFp12;
+	private int cdFp12;
 
 	@Column(name = "cd_fp13")
-	private Integer cdFp13;
+	private int cdFp13;
 
 	@Column(name = "cd_fp14")
-	private Integer cdFp14;
+	private int cdFp14;
 
 	@Column(name = "cd_fp15")
-	private Integer cdFp15;
+	private int cdFp15;
 
 	@Column(name = "cd_fp16")
-	private Integer cdFp16;
+	private int cdFp16;
 
 	@Column(name = "cd_fp2")
-	private Integer cdFp2;
+	private int cdFp2;
 
 	@Column(name = "cd_fp3")
-	private Integer cdFp3;
+	private int cdFp3;
 
 	@Column(name = "cd_fp4")
-	private Integer cdFp4;
+	private int cdFp4;
 
 	@Column(name = "cd_fp5")
-	private Integer cdFp5;
+	private int cdFp5;
 
 	@Column(name = "cd_fp6")
-	private Integer cdFp6;
+	private int cdFp6;
 
 	@Column(name = "cd_fp7")
-	private Integer cdFp7;
+	private int cdFp7;
 
 	@Column(name = "cd_fp8")
-	private Integer cdFp8;
+	private int cdFp8;
 
 	@Column(name = "cd_fp9")
-	private Integer cdFp9;
+	private int cdFp9;
 
 	@Column(name = "cd_hash")
-	private Integer cdHash;
+	private int cdHash;
 
 	@Column(name = "cd_molweight")
 	private double cdMolweight;
@@ -95,7 +94,7 @@ public class Structure implements Serializable {
 	private String cdTautFragHash;
 
 	@Column(name = "cd_taut_hash")
-	private Integer cdTautHash;
+	private int cdTautHash;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "cd_timestamp")
@@ -108,16 +107,11 @@ public class Structure implements Serializable {
 	private String unknown;
 
 	// bi-directional one-to-one association to Parent
-	
+
 	@Id
-	@ManyToOne
-	@JoinColumn(name = "cd_id", referencedColumnName = "STRUCTURE_ID")
-	private Parent parent;
-	
-/*	@Id
-	@Column(name="cd_id")
-	private Integer cdId; 
-*/
+	@Column(name = "cd_id")
+	private Integer cdId;
+
 	public Structure() {
 	}
 
@@ -137,139 +131,139 @@ public class Structure implements Serializable {
 		this.cdFormula = cdFormula;
 	}
 
-	public Integer getCdFp1() {
+	public int getCdFp1() {
 		return this.cdFp1;
 	}
 
-	public void setCdFp1(Integer cdFp1) {
+	public void setCdFp1(int cdFp1) {
 		this.cdFp1 = cdFp1;
 	}
 
-	public Integer getCdFp10() {
+	public int getCdFp10() {
 		return this.cdFp10;
 	}
 
-	public void setCdFp10(Integer cdFp10) {
+	public void setCdFp10(int cdFp10) {
 		this.cdFp10 = cdFp10;
 	}
 
-	public Integer getCdFp11() {
+	public int getCdFp11() {
 		return this.cdFp11;
 	}
 
-	public void setCdFp11(Integer cdFp11) {
+	public void setCdFp11(int cdFp11) {
 		this.cdFp11 = cdFp11;
 	}
 
-	public Integer getCdFp12() {
+	public int getCdFp12() {
 		return this.cdFp12;
 	}
 
-	public void setCdFp12(Integer cdFp12) {
+	public void setCdFp12(int cdFp12) {
 		this.cdFp12 = cdFp12;
 	}
 
-	public Integer getCdFp13() {
+	public int getCdFp13() {
 		return this.cdFp13;
 	}
 
-	public void setCdFp13(Integer cdFp13) {
+	public void setCdFp13(int cdFp13) {
 		this.cdFp13 = cdFp13;
 	}
 
-	public Integer getCdFp14() {
+	public int getCdFp14() {
 		return this.cdFp14;
 	}
 
-	public void setCdFp14(Integer cdFp14) {
+	public void setCdFp14(int cdFp14) {
 		this.cdFp14 = cdFp14;
 	}
 
-	public Integer getCdFp15() {
+	public int getCdFp15() {
 		return this.cdFp15;
 	}
 
-	public void setCdFp15(Integer cdFp15) {
+	public void setCdFp15(int cdFp15) {
 		this.cdFp15 = cdFp15;
 	}
 
-	public Integer getCdFp16() {
+	public int getCdFp16() {
 		return this.cdFp16;
 	}
 
-	public void setCdFp16(Integer cdFp16) {
+	public void setCdFp16(int cdFp16) {
 		this.cdFp16 = cdFp16;
 	}
 
-	public Integer getCdFp2() {
+	public int getCdFp2() {
 		return this.cdFp2;
 	}
 
-	public void setCdFp2(Integer cdFp2) {
+	public void setCdFp2(int cdFp2) {
 		this.cdFp2 = cdFp2;
 	}
 
-	public Integer getCdFp3() {
+	public int getCdFp3() {
 		return this.cdFp3;
 	}
 
-	public void setCdFp3(Integer cdFp3) {
+	public void setCdFp3(int cdFp3) {
 		this.cdFp3 = cdFp3;
 	}
 
-	public Integer getCdFp4() {
+	public int getCdFp4() {
 		return this.cdFp4;
 	}
 
-	public void setCdFp4(Integer cdFp4) {
+	public void setCdFp4(int cdFp4) {
 		this.cdFp4 = cdFp4;
 	}
 
-	public Integer getCdFp5() {
+	public int getCdFp5() {
 		return this.cdFp5;
 	}
 
-	public void setCdFp5(Integer cdFp5) {
+	public void setCdFp5(int cdFp5) {
 		this.cdFp5 = cdFp5;
 	}
 
-	public Integer getCdFp6() {
+	public int getCdFp6() {
 		return this.cdFp6;
 	}
 
-	public void setCdFp6(Integer cdFp6) {
+	public void setCdFp6(int cdFp6) {
 		this.cdFp6 = cdFp6;
 	}
 
-	public Integer getCdFp7() {
+	public int getCdFp7() {
 		return this.cdFp7;
 	}
 
-	public void setCdFp7(Integer cdFp7) {
+	public void setCdFp7(int cdFp7) {
 		this.cdFp7 = cdFp7;
 	}
 
-	public Integer getCdFp8() {
+	public int getCdFp8() {
 		return this.cdFp8;
 	}
 
-	public void setCdFp8(Integer cdFp8) {
+	public void setCdFp8(int cdFp8) {
 		this.cdFp8 = cdFp8;
 	}
 
-	public Integer getCdFp9() {
+	public int getCdFp9() {
 		return this.cdFp9;
 	}
 
-	public void setCdFp9(Integer cdFp9) {
+	public void setCdFp9(int cdFp9) {
 		this.cdFp9 = cdFp9;
 	}
 
-	public Integer getCdHash() {
+	public int getCdHash() {
 		return this.cdHash;
 	}
 
-	public void setCdHash(Integer cdHash) {
+	public void setCdHash(int cdHash) {
 		this.cdHash = cdHash;
 	}
 
@@ -329,11 +323,11 @@ public class Structure implements Serializable {
 		this.cdTautFragHash = cdTautFragHash;
 	}
 
-	public Integer getCdTautHash() {
+	public int getCdTautHash() {
 		return this.cdTautHash;
 	}
 
-	public void setCdTautHash(Integer cdTautHash) {
+	public void setCdTautHash(int cdTautHash) {
 		this.cdTautHash = cdTautHash;
 	}
 
@@ -368,21 +362,5 @@ public class Structure implements Serializable {
 	public void setUnknown(String unknown) {
 		this.unknown = unknown;
 	}
-
-	public Parent getParent() {
-		return this.parent;
-	}
-
-	public void setParent(Parent parent) {
-		this.parent = parent;
-	}
-
-	/*public Integer getCdId() {
-		return cdId;
-	}
-
-	public void setCdId(Integer cdId) {
-		this.cdId = cdId;
-	}*/
 
 }

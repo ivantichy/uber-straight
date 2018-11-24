@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import io.leangen.graphql.annotations.GraphQLQuery;
-import model.Parent;
+import model_original.Parent;
 
 public class QueryResolver implements GraphQLQueryResolver {
 

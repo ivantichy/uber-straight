@@ -6,50 +6,52 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+
 /**
  * The persistent class for the parent database table.
  * 
  */
 @Entity
-@NamedQuery(name = "Parent.findAll", query = "SELECT p FROM Parent p")
+@NamedQuery(name="Parent.findAll", query="SELECT p FROM Parent p")
 public class Parent implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String biological;
-	@Id
-	@Column(name = "PARENT_ID")
-	private Integer parentId;
 
-	@Column(name = "CREATED_BY")
+	@Column(name="CREATED_BY")
 	private String createdBy;
 
-	@Column(name = "CST_ORIGINAL")
+	@Column(name="CST_ORIGINAL")
 	private String cstOriginal;
 
-	@Column(name = "DIRTY_STATUS")
+	@Column(name="DIRTY_STATUS")
 	private String dirtyStatus;
 
-	@Column(name = "GEOMETRIC_ISOMERISM")
+	@Column(name="GEOMETRIC_ISOMERISM")
 	private String geometricIsomerism;
 
-	@Column(name = "CHEMIST_ID")
+	@Column(name="CHEMIST_ID")
 	private String chemistId;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "INIT_DATE")
+	@Column(name="INIT_DATE")
 	private Date initDate;
 
-	@Column(name = "IS_DELETED")
+	@Column(name="IS_DELETED")
 	private String isDeleted;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "MOD_DATE")
+	@Column(name="MOD_DATE")
 	private Date modDate;
 
-	@Column(name = "MODIFIED_BY")
+	@Column(name="MODIFIED_BY")
 	private String modifiedBy;
 
 	private BigDecimal mwt;
+
+	@Id
+	@Column(name="PARENT_ID")
+	private Integer parentId;
 
 	private String pcn;
 
@@ -57,33 +59,16 @@ public class Parent implements Serializable {
 
 	private String stereochemistry;
 
-	@Column(name = "STRUCTURE_TYPE")
+	@Column(name="STRUCTURE_TYPE")
 	private Integer structureType;
 
-	@Column(name = "UNKNOWN_ID")
+	@Column(name="UNKNOWN_ID")
 	private Integer unknownId;
-
-	@Column(name = "STRUCTURE_ID")
-	private String structureId;
-
-	// bi-directional many-to-one association to AdditionalData
-	@OneToMany(mappedBy = "parent")
-	private List<AdditionalData> additionalData;
-
-	// bi-directional many-to-one association to AssayAggregatedDataView
-	@OneToMany(mappedBy = "parent")
-	private List<AssayAggregatedDataView> assayAggregatedDataViews;
-
-	@OneToMany(mappedBy = "parent")
-	private List<ParentIupacName> parentIupacNames;
-
-	// bi-directional one-to-one association to Structure
-	@OneToMany(mappedBy = "parent")
-	private List<Structure> structures;
-
-	// bi-directional many-to-one association to Version
-	@OneToMany(mappedBy = "parent")
-	private List<Version> versions;
+	
+	//bi-directional one-to-one association to Structure
+	@OneToOne()
+	@JoinColumn(name="STRUCTURE_ID")
+	private Structure structure;
 
 	public Parent() {
 	}
@@ -176,6 +161,14 @@ public class Parent implements Serializable {
 		this.mwt = mwt;
 	}
 
+	public Integer getParentId() {
+		return this.parentId;
+	}
+
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
+	}
+
 	public String getPcn() {
 		return this.pcn;
 	}
@@ -216,124 +209,18 @@ public class Parent implements Serializable {
 		this.unknownId = unknownId;
 	}
 
-	public List<AdditionalData> getAdditionalData() {
-		return this.additionalData;
+	public Structure getStructure() {
+		return this.structure;
 	}
 
-	public void setAdditionalData(List<AdditionalData> additionalData) {
-		this.additionalData = additionalData;
-	}
-
-	public AdditionalData addAdditionalData(AdditionalData additionalData) {
-		getAdditionalData().add(additionalData);
-		additionalData.setParent(this);
-
-		return additionalData;
-	}
-
-	public AdditionalData removeAdditionalData(AdditionalData additionalData) {
-		getAdditionalData().remove(additionalData);
-		additionalData.setParent(null);
-
-		return additionalData;
-	}
-
-	public List<AssayAggregatedDataView> getAssayAggregatedDataViews() {
-		return this.assayAggregatedDataViews;
-	}
-
-	public void setAssayAggregatedDataViews(
-			List<AssayAggregatedDataView> assayAggregatedDataViews) {
-		this.assayAggregatedDataViews = assayAggregatedDataViews;
-	}
-
-	public AssayAggregatedDataView addAssayAggregatedDataView(
-			AssayAggregatedDataView assayAggregatedDataView) {
-		getAssayAggregatedDataViews().add(assayAggregatedDataView);
-		assayAggregatedDataView.setParent(this);
-
-		return assayAggregatedDataView;
-	}
-
-	public AssayAggregatedDataView removeAssayAggregatedDataView(
-			AssayAggregatedDataView assayAggregatedDataView) {
-		getAssayAggregatedDataViews().remove(assayAggregatedDataView);
-		assayAggregatedDataView.setParent(null);
-
-		return assayAggregatedDataView;
-	}
-
-	public List<ParentIupacName> getParentIupacNames() {
-		return this.parentIupacNames;
-	}
-
-	public void setParentIupacNames(List<ParentIupacName> parentIupacNames) {
-		this.parentIupacNames = parentIupacNames;
-	}
-
-	public ParentIupacName addParentIupacName(ParentIupacName parentIupacName) {
-		parentIupacName.setParent(this);
-		this.parentIupacNames.add(parentIupacName);
-		return parentIupacName;
-	}
-
-	public List<Structure> getStructures() {
-		return this.structures;
-	}
-
-	public void setStructures(List<Structure> structures) {
-		this.structures = structures;
+	public void setStructure(Structure structure) {
+		this.structure = structure;
 	}
 	
-	public Structure addStructure(Structure structure) {
-		structure.setParent(this);
-		this.structures.add(structure);
-		return structure;
-	}
-	
-
-	public List<Version> getVersions() {
-		return this.versions;
-	}
-
-	public void setVersions(List<Version> versions) {
-		this.versions = versions;
-	}
-
-	public Version addVersion(Version version) {
-		getVersions().add(version);
-		version.setParent(this);
-
-		return version;
-	}
-
-	public Version removeVersion(Version version) {
-		getVersions().remove(version);
-		version.setParent(null);
-
-		return version;
-	}
-
-	public Integer getParentId() {
-		return parentId;
-	}
-
-	public void setParentId(Integer parentId) {
-		this.parentId = parentId;
-	}
-
 	public static List<Parent> allParents() {
 
 		EntityManager em = Persistence.createEntityManagerFactory("uber")
 				.createEntityManager();
 		return em.createNamedQuery("Parent.findAll").getResultList();
-	}
-
-	public String getStructureId() {
-		return structureId;
-	}
-
-	public void setStructureId(String structureId) {
-		this.structureId = structureId;
 	}
 }
