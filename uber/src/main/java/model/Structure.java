@@ -106,13 +106,18 @@ public class Structure implements Serializable {
 	private BigDecimal mwt;
 
 	private String unknown;
-	
-    // bi-directional one-to-one association to Parent
-	@Id
-	@OneToOne
-	@JoinColumn(name="CD_ID", referencedColumnName="STRUCTURE_ID")
-	private Parent parent;
 
+	// bi-directional one-to-one association to Parent
+	
+	@Id
+	@ManyToOne
+	@JoinColumn(name = "cd_id", referencedColumnName = "STRUCTURE_ID")
+	private Parent parent;
+	
+/*	@Id
+	@Column(name="cd_id")
+	private Integer cdId; 
+*/
 	public Structure() {
 	}
 
@@ -371,7 +376,13 @@ public class Structure implements Serializable {
 	public void setParent(Parent parent) {
 		this.parent = parent;
 	}
-	
-	
+
+	/*public Integer getCdId() {
+		return cdId;
+	}
+
+	public void setCdId(Integer cdId) {
+		this.cdId = cdId;
+	}*/
 
 }

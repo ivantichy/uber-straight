@@ -74,12 +74,12 @@ public class Parent implements Serializable {
 	@OneToMany(mappedBy = "parent")
 	private List<AssayAggregatedDataView> assayAggregatedDataViews;
 
-	@OneToOne(mappedBy = "parent")
-	private ParentIupacName parentIupacName;
+	@OneToMany(mappedBy = "parent")
+	private List<ParentIupacName> parentIupacNames;
 
 	// bi-directional one-to-one association to Structure
-	@OneToOne(mappedBy = "parent", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
-	private Structure structure;
+	@OneToMany(mappedBy = "parent")
+	private List<Structure> structures;
 
 	// bi-directional many-to-one association to Version
 	@OneToMany(mappedBy = "parent")
@@ -263,27 +263,34 @@ public class Parent implements Serializable {
 		return assayAggregatedDataView;
 	}
 
-	public ParentIupacName getParentIupacName() {
-		return this.parentIupacName;
+	public List<ParentIupacName> getParentIupacNames() {
+		return this.parentIupacNames;
 	}
 
-	public void setParentIupacName(ParentIupacName parentIupacNames) {
-		this.parentIupacName = parentIupacNames;
+	public void setParentIupacNames(List<ParentIupacName> parentIupacNames) {
+		this.parentIupacNames = parentIupacNames;
 	}
 
 	public ParentIupacName addParentIupacName(ParentIupacName parentIupacName) {
-		this.parentIupacName = parentIupacName;
 		parentIupacName.setParent(this);
+		this.parentIupacNames.add(parentIupacName);
 		return parentIupacName;
 	}
 
-	public Structure getStructure() {
-		return this.structure;
+	public List<Structure> getStructures() {
+		return this.structures;
 	}
 
-	public void setStructure(Structure structure) {
-		this.structure = structure;
+	public void setStructures(List<Structure> structures) {
+		this.structures = structures;
 	}
+	
+	public Structure addStructure(Structure structure) {
+		structure.setParent(this);
+		this.structures.add(structure);
+		return structure;
+	}
+	
 
 	public List<Version> getVersions() {
 		return this.versions;

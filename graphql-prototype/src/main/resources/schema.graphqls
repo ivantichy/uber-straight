@@ -40,8 +40,8 @@ type Parent {
     unknownId: String
     additionalData: [AdditionalData]
     assayAggregatedDataViews: [AssayAggregatedDataView]
-	parentIupacName: ParentIupacName
-    structure: Structure
+	parentIupacNames: [ParentIupacName] #onetoone
+    structures: [Structure] #onotoone
     versions: [Version]
   
 }
@@ -98,8 +98,6 @@ type Structure {
 	mf: String
 	mwt: String
 	unknown: String
-	cdId: String
-	parent: Parent
 }
 
 type Version {
