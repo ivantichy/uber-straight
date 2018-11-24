@@ -8,7 +8,7 @@
 	<packaging>pom</packaging>
 	<name>graphql-uber-straight-solution</name>
 	<modules>
-		<module>../uber</module>
-		<module>../graphql-prototype</module>
+		<module>uber</module>
+		<module>graphql-prototype</module>
 	</modules>
 </project>

@@ -7,7 +7,7 @@
 	<parent>
 	<groupId>com.chemaxon</groupId>
 	<artifactId>uber-straight</artifactId>
-	<relativePath>../uber-straight/</relativePath>
+	<relativePath>../</relativePath>
 	<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<name>graphql-straight-prototype</name>

@@ -107,17 +107,14 @@ public class Structure implements Serializable {
 
 	private String unknown;
 
-	// bi-directional one-to-one association to Parent
-	
 	@Id
-	@ManyToOne
-	@JoinColumn(name = "cd_id", referencedColumnName = "STRUCTURE_ID")
+	@Column(name = "cd_id")
+	private Integer cdId;
+
+	@OneToOne()
+	@JoinColumn(name="cd_id", referencedColumnName="STRUCTURE_ID")
 	private Parent parent;
 	
-/*	@Id
-	@Column(name="cd_id")
-	private Integer cdId; 
-*/
 	public Structure() {
 	}
 
@@ -369,20 +366,19 @@ public class Structure implements Serializable {
 		this.unknown = unknown;
 	}
 
-	public Parent getParent() {
-		return this.parent;
-	}
-
-	public void setParent(Parent parent) {
-		this.parent = parent;
-	}
-
-	/*public Integer getCdId() {
+	public Integer getCdId() {
 		return cdId;
 	}
 
 	public void setCdId(Integer cdId) {
 		this.cdId = cdId;
-	}*/
+	}
+	
+	public Parent getParent() {
+		return parent;
+	}
+	public void setParent(Parent parent) {
+		this.parent = parent;
+	}
 
 }

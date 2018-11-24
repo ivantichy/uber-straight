@@ -18,11 +18,10 @@ public class ParentIupacName implements Serializable {
 
 	@Column(name = "ad_value")
 	private String adValue;
-	// bi-directional many-to-one association to Parent
-	@OneToOne
+
 	@Id
-	@JoinColumn(name = "parent_id", referencedColumnName = "PARENT_ID")
-	private Parent parent;
+	@Column(name = "PARENT_ID")
+	private Integer parentID;
 
 	public ParentIupacName() {
 	}
@@ -35,12 +34,12 @@ public class ParentIupacName implements Serializable {
 		this.adValue = adValue;
 	}
 
-	public Parent getParent() {
-		return this.parent;
+	public Integer getParentID() {
+		return parentID;
 	}
 
-	public void setParent(Parent parent) {
-		this.parent = parent;
+	public void setParentID(Integer parentID) {
+		this.parentID = parentID;
 	}
 
 }

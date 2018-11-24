@@ -63,9 +63,6 @@ public class Parent implements Serializable {
 	@Column(name = "UNKNOWN_ID")
 	private Integer unknownId;
 
-	@Column(name = "STRUCTURE_ID")
-	private String structureId;
-
 	// bi-directional many-to-one association to AdditionalData
 	@OneToMany(mappedBy = "parent")
 	private List<AdditionalData> additionalData;
@@ -74,12 +71,14 @@ public class Parent implements Serializable {
 	@OneToMany(mappedBy = "parent")
 	private List<AssayAggregatedDataView> assayAggregatedDataViews;
 
-	@OneToMany(mappedBy = "parent")
-	private List<ParentIupacName> parentIupacNames;
+	@OneToOne()
+	@JoinColumn(name = "PARENT_ID", referencedColumnName = "PARENT_ID")
+	private ParentIupacName parentIupacName;
 
-	// bi-directional one-to-one association to Structure
-	@OneToMany(mappedBy = "parent")
-	private List<Structure> structures;
+	// uni-directional one-to-one association to Structure
+	@OneToOne()
+	@JoinColumn(name = "STRUCTURE_ID", referencedColumnName = "cd_id")
+	private Structure structure;
 
 	// bi-directional many-to-one association to Version
 	@OneToMany(mappedBy = "parent")
@@ -263,34 +262,21 @@ public class Parent implements Serializable {
 		return assayAggregatedDataView;
 	}
 
-	public List<ParentIupacName> getParentIupacNames() {
-		return this.parentIupacNames;
+	public ParentIupacName getParentIupacName() {
+		return this.parentIupacName;
 	}
 
-	public void setParentIupacNames(List<ParentIupacName> parentIupacNames) {
-		this.parentIupacNames = parentIupacNames;
+	public void setParentIupacName(ParentIupacName parentIupacName) {
+		this.parentIupacName = parentIupacName;
 	}
 
-	public ParentIupacName addParentIupacName(ParentIupacName parentIupacName) {
-		parentIupacName.setParent(this);
-		this.parentIupacNames.add(parentIupacName);
-		return parentIupacName;
+	public Structure getStructure() {
+		return this.structure;
 	}
 
-	public List<Structure> getStructures() {
-		return this.structures;
+	public void setStructure(Structure structure) {
+		this.structure = structure;
 	}
-
-	public void setStructures(List<Structure> structures) {
-		this.structures = structures;
-	}
-	
-	public Structure addStructure(Structure structure) {
-		structure.setParent(this);
-		this.structures.add(structure);
-		return structure;
-	}
-	
 
 	public List<Version> getVersions() {
 		return this.versions;
@@ -329,11 +315,4 @@ public class Parent implements Serializable {
 		return em.createNamedQuery("Parent.findAll").getResultList();
 	}
 
-	public String getStructureId() {
-		return structureId;
-	}
-
-	public void setStructureId(String structureId) {
-		this.structureId = structureId;
-	}
 }

@@ -19,7 +19,6 @@ type AdditionalData {
 
 type Parent {
     parentId: ID!
-    structureId: String!
     biological: String
     parentId: String
     createdBy: String
@@ -35,13 +34,12 @@ type Parent {
     pcn: String
     restricted: String
     stereochemistry: String
-    structureId: String
     structureType: String
     unknownId: String
     additionalData: [AdditionalData]
     assayAggregatedDataViews: [AssayAggregatedDataView]
-	parentIupacNames: [ParentIupacName] #onetoone
-    structures: [Structure] #onotoone
+	parentIupacName: ParentIupacName
+    structure: Structure
     versions: [Version]
   
 }
@@ -63,7 +61,6 @@ type AssayAggregatedDataView {
 
 type ParentIupacName {
 	adValue: String
-	parent: Parent
 }
 
 type Structure {
@@ -95,9 +92,11 @@ type Structure {
 	cdTautFragHash: String
 	cdTautHash: String
 	cdTimestamp: String
+	cdId: String
 	mf: String
 	mwt: String
 	unknown: String
+	parent: Parent
 }
 
 type Version {
